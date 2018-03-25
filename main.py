@@ -169,9 +169,11 @@ def GameOfLife():
 
     PrintField(field)
     time.sleep(4)
-
+    i = 1
     while (True):
         field = NextStep(field, allAlive)
+        print('Number of generation:', i,'\n')
+        i+=1
         time.sleep(4)
 
 
