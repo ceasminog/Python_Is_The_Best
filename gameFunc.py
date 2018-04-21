@@ -55,6 +55,37 @@ def AddToFieldFromFile(all_alive, values=[-1, 1, 2]):
             j = j + 2
     return field
 
+def AddToFieldFromConsole(all_alive, values=[-1, 1, 2]):  # number of types pf data : rock, fish, shrimp
+    try:
+        n = int(input())
+        field = []
+        field = CreateField(n)
+        for i in range(len(values)):
+            a = input().split()
+            if (a != ['']):
+                result = [int(item) for item in a]
+            else:
+                result = []
+            j = 0
+            while j < len(result):
+                x = int(result[j])
+                y = int(result[j + 1])
+                new_c = Cell()
+                field[x][y] = new_c.create(values[i])
+                if (values[i] > 0):
+                    all_alive[0].append(int(result[j]) % n);
+                    all_alive[1].append(int(result[j + 1]) % n);
+                j = j + 2
+        return field
+    except ValueError or IndexError:
+        print("Wrong input")
+        print("Try again")
+        AddToFieldFromConsole(all_alive)
+    except:
+        print("Sorry. Something went wrong(")
+        print("Try again")
+        AddToFieldFromConsole(all_alive)
+
 def CalculateNeighbours(field, x, y, values=[-1, 1, 2]):
     dim = len(field[0])
     neighbours = [0] * len(values)
