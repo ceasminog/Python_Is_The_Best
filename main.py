@@ -7,12 +7,10 @@ import gameFunc
 
 field = []
 all_alive = [[], []]
+type_of_input=''
 print("Do you want to read from file(F) or console(C)")
-typeofInput = input()
-if (typeofInput == 'C'):
-    field = gameFunc.AddToFieldFromConsole(all_alive)
-else:
-    field = gameFunc.AddToFieldFromFile(all_alive)
+type_of_input = input()
+gameFunc.add_to_field(all_alive, type_of_input)
 
 WIN_WIDTH = 800 #Ширина создаваемого окна
 WIN_HEIGHT = 640 # Высота
@@ -24,7 +22,7 @@ pygame.font.init()
 
 def PrintF(field, generation):
     font = pygame.font.SysFont("comicsansms", 50)
-    graphic_field = gameFunc.GetField(field)
+    graphic_field = gameFunc.get_field(field)
     for i in range(len(field)):
         text = font.render(graphic_field[i], True, (255, 193, 7))
         screen.blit(text, [20, 20 + 40 * i])
@@ -51,7 +49,7 @@ while mainLoop:
         if event.type == QUIT:
             mainLoop = False
     screen.blit(bg, (0, 0))
-    field = gameFunc.NextStep(field, all_alive) # back end
+    field = gameFunc.next_step(field, all_alive) # back end
     PrintF(field, o)
     pygame.display.update()
 pygame.quit()

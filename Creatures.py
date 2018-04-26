@@ -1,11 +1,11 @@
 class Cell:
-    def IsEmpty(self):
+    def is_empty(self):
         return True
 
-    def IsAlive(self):
+    def is_alive(self):
         return False
 
-    def ShouldDie(self):
+    def should_die(self):
         return self
 
     def create(self, type ):
@@ -17,7 +17,7 @@ class Cell:
             return Rock()
         return self
 
-    def ShouldBeBorn(self, neigh):
+    def should_be_born(self, neigh):
         c1 = Fish()
         c2 = Shrimp()
         if neigh[1] == c1.NUM_TO_CREATE:
@@ -26,10 +26,10 @@ class Cell:
             return c2
         return self
 
-    def PrintMe(self):
+    def __str__(self):
        return "~ "
 
-    def NumOfType(self):# every non empty cell has type to calculate neigh easier
+    def num_of_type(self):# every non empty cell has type to calculate neigh easier
         pass
 
 class Fish(Cell):
@@ -37,25 +37,25 @@ class Fish(Cell):
     MAX_NEIGH = 3
     NUM_TO_CREATE = 3
 
-    def IsEmpty(self):
+    def is_empty(self):
         return False
 
-    def IsAlive(self):
+    def is_alive(self):
         return True
 
-    def PrintMe(self):
+    def __str__(self):
         return "F "
 
-    def ShouldDie(self, neigh):
+    def should_die(self, neigh):
         if (neigh > 1 and neigh < 4):
             return self
         else:
             return Cell()
 
-    def ShouldBeBorn(self):
+    def should_be_born(self):
         pass
 
-    def NumOfType(self):
+    def num_of_type(self):
         return 1
 
 class Shrimp(Cell):
@@ -63,43 +63,43 @@ class Shrimp(Cell):
     MAX_NEIGH = 3
     NUM_TO_CREATE = 3
 
-    def IsEmpty(self):
+    def is_empty(self):
         return False
 
-    def IsAlive(self):
+    def is_alive(self):
         return True
 
-    def PrintMe(self):
+    def __str__(self):
         return "S "
 
-    def ShouldDie(self, neigh):
+    def should_die(self, neigh):
         if (neigh > 1 and neigh < 4):
             return self
         else:
             return Cell()
 
-    def ShouldBeBorn(self):
+    def should_be_born(self):
         pass
 
-    def NumOfType(self):
+    def num_of_type(self):
         return 2
 
 
 class Rock(Cell):
 
-    def IsEmpty(self):
+    def is_empty(self):
         return False
 
-    def PrintMe(self):
+    def __str__(self):
         return "R "
 
-    def ShouldDie(self, neigh):
+    def should_die(self, neigh):
         return self
 
 
-    def ShouldBeBorn(self):
+    def should_be_born(self):
         pass
 
-    def NumOfType(self):
+    def num_of_type(self):
         return -1
 #**********************************************
